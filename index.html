@@ -247,12 +247,19 @@
     try{
         if ('geolocation' in navigator) {
           navigator.geolocation.watchPosition(function(position){
-                $('#gps_info').text('위도 : ' + position.coords.latitude + ' / 경도 : ' + position.coords.longitude);
+              for(var i in $('.gps_info')){
+                  $('.gps_info')[i].text('위도 : ' + position.coords.latitude + ' / 경도 : ' + position.coords.longitude);
+              }
             }, function(position){
-                $('#gps_info').text('not found position');
+              for(var i in $('.gps_info')){
+                  $('.gps_info')[i].text('not found position');
+              }
             });
-        } else {
-          $('#gps_info').text('not support gps in this browser');
+        } 
+        else {
+          for(var i in $('.gps_info')){
+              $('.gps_info')[i].text('not support gps in this browser');
+          }
         }
     }
     catch(err){
@@ -352,6 +359,11 @@
                 <p class="tit">업데이트 정보</p>
                 <p id="android_update"></p>
             </div>
+            
+            <div class="contents">
+                <p class="tit">GPS Info</p>
+                <p class="gps_info"></p>
+            </div>
 
             <div class="lnk_but">
                 <a href="https://seomooseong.github.io/testDownload/android/BNK.apk" onfocus="this.blur()">
@@ -395,7 +407,7 @@
             
             <div class="contents">
                 <p class="tit">GPS Info</p>
-                <p id="gps_info" class="versionInfo"></p>
+                <p class="gps_info"></p>
             </div>
 
             <div class="lnk_but">
