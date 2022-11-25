@@ -254,14 +254,14 @@
           for(var i = 0; i < $('.gps_info').length; i++){
               $('.gps_info').eq(i).html($('.gps_info').eq(i).html() + '<br>[ ' + cnt + ' ] 위도 : ' + position.coords.latitude + ' / 경도 : ' + position.coords.longitude);
           }
-          setInterval(function(){
+          setTimeout(function(){
               this.gpsFn(cnt + 1);
           }, 3000);  
         }, function(position){
           for(var i = 0; i < $('.gps_info').length; i++){
               $('.gps_info').eq(i).html($('.gps_info').eq(i).html() + '<br>[ ' + cnt + ' ] not found position : ' + position.code + ' - ' + position.message);
           }
-          setInterval(function(){
+          setTimeout(function(){
               this.gpsFn(cnt + 1);
           }, 3000);
         });
@@ -279,13 +279,6 @@
     }
     catch(err){
         alert(err);
-    }
-        
-    //gps test version
-    var gpsVersion = '0.5';
-    
-    for(var i = 0; i < $('.gps_version').length; i++){
-        $('.gps_version').eq(i).html(gpsVersion);
     }
         
     </script>
@@ -312,7 +305,12 @@
     })
 
     $(document).ready(function() {
+        //gps test version
+        var gpsVersion = '0.5';
 
+        for(var i = 0; i < $('.gps_version').length; i++){
+            $('.gps_version').eq(i).html(gpsVersion);
+        }
     });
 
     function startRequest() {
