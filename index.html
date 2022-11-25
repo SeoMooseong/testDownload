@@ -244,6 +244,25 @@
         }
     }, false);
     
+    var getErrMsg = function(code){
+        
+        var msg = '';
+        if(code == '1'){
+            msg = '권한 확인 필요';
+        }
+        else if(code == '2'){
+            msg = '위치 정보 조회 불가';
+        }
+        else if(code == '3') {
+            msg = '시간 초과';
+        }
+        else{
+            msg = '원인 확인 필요';
+        }
+        
+        return msg;
+    }
+        
     var gpsFn = function(cnt) {
         
         if(cnt > 100){
@@ -259,7 +278,7 @@
           }, 3000);  
         }, function(position){
           for(var i = 0; i < $('.gps_info').length; i++){
-              $('.gps_info').eq(i).html($('.gps_info').eq(i).html() + '<br>[ ' + cnt + ' ] not found position : ' + position.code + ' - ' + position.message);
+              $('.gps_info').eq(i).html($('.gps_info').eq(i).html() + '<br>[ ' + cnt + ' ] not found position : ' + position.code + ' - ' + this.getErrMsg(position.code));
           }
           setTimeout(function(){
               this.gpsFn(cnt + 1);
@@ -306,7 +325,7 @@
 
     $(document).ready(function() {
         //gps test version
-        var gpsVersion = '0.5';
+        var gpsVersion = '0.6';
 
         for(var i = 0; i < $('.gps_version').length; i++){
             $('.gps_version').eq(i).html(gpsVersion);
