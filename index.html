@@ -244,17 +244,22 @@
         }
     }, false);
     
+    var gpsFn = function(cnt) {
+        navigator.geolocation.getCurrentPosition(function(position){
+          for(var i = 0; i < $('.gps_info').length; i++){
+              $('.gps_info').eq(i).text('[ ' + cnt + ' ] 위도 : ' + position.coords.latitude + ' / 경도 : ' + position.coords.longitude);
+          }
+        }, function(position){
+          for(var i = 0; i < $('.gps_info').length; i++){
+              $('.gps_info').eq(i).text('[ ' + cnt + ' ] not found position : ' + position.code + ' - ' + position.message);
+              this.gpsFn(cnt + 1);
+          }
+        });
+    };
+
     try{
         if ('geolocation' in navigator) {
-          navigator.geolocation.watchPosition(function(position){
-              for(var i = 0; i < $('.gps_info').length; i++){
-                  $('.gps_info').eq(i).text('위도 : ' + position.coords.latitude + ' / 경도 : ' + position.coords.longitude);
-              }
-            }, function(position){
-              for(var i = 0; i < $('.gps_info').length; i++){
-                  $('.gps_info').eq(i).text('not found position');
-              }
-            });
+          this.gpsFn(1);
         } 
         else {
           for(var i = 0; i < $('.gps_info').length; i++){
@@ -265,6 +270,13 @@
     catch(err){
         alert(err);
     }
+        
+    //gps test version
+    var gpsVersion = '0.0';
+    
+    for(var i = 0; i < $('.gps_version').length; i++){
+        $('.gps_version').eq(i).text(gpsVersion);
+    }    
         
     </script>
 
@@ -361,7 +373,7 @@
             </div>
             
             <div class="contents">
-                <p class="tit">GPS Info</p>
+                <p class="tit">GPS Info v<span class="gps_version">0.0</span></p>
                 <p class="gps_info"></p>
             </div>
 
@@ -406,7 +418,7 @@
             </div>
             
             <div class="contents">
-                <p class="tit">GPS Info</p>
+                <p class="tit">GPS Info v<span class="gps_version">0.0</span></p>
                 <p class="gps_info"></p>
             </div>
 
