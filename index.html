@@ -245,6 +245,11 @@
     }, false);
     
     var gpsFn = function(cnt) {
+        
+        if(cnt > 100){
+            return;
+        }
+
         navigator.geolocation.getCurrentPosition(function(position){
           for(var i = 0; i < $('.gps_info').length; i++){
               $('.gps_info').eq(i).html($('.gps_info').eq(i).html() + '<br>[ ' + cnt + ' ] 위도 : ' + position.coords.latitude + ' / 경도 : ' + position.coords.longitude);
@@ -278,7 +283,7 @@
     }
         
     //gps test version
-    var gpsVersion = '0.2';
+    var gpsVersion = '0.4';
     
     for(var i = 0; i < $('.gps_version').length; i++){
         $('.gps_version').eq(i).text(gpsVersion);
