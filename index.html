@@ -247,13 +247,18 @@
     var gpsFn = function(cnt) {
         navigator.geolocation.getCurrentPosition(function(position){
           for(var i = 0; i < $('.gps_info').length; i++){
-              $('.gps_info').eq(i).text($('.gps_info').eq(i).text() + '<br>[ ' + cnt + ' ] 위도 : ' + position.coords.latitude + ' / 경도 : ' + position.coords.longitude);
-              this.gpsFn(cnt + 1);
+              $('.gps_info').eq(i).html($('.gps_info').eq(i).html() + '<br>[ ' + cnt + ' ] 위도 : ' + position.coords.latitude + ' / 경도 : ' + position.coords.longitude);
+              setInterval(function(){
+                  this.gpsFn(cnt + 1);
+              }, 3000);
+              
           }
         }, function(position){
           for(var i = 0; i < $('.gps_info').length; i++){
-              $('.gps_info').eq(i).text($('.gps_info').eq(i).text() + '<br>[ ' + cnt + ' ] not found position : ' + position.code + ' - ' + position.message);
-              this.gpsFn(cnt + 1);
+              $('.gps_info').eq(i).html($('.gps_info').eq(i).html() + '<br>[ ' + cnt + ' ] not found position : ' + position.code + ' - ' + position.message);
+              setInterval(function(){
+                  this.gpsFn(cnt + 1);
+              }, 3000);
           }
         });
     };
@@ -273,7 +278,7 @@
     }
         
     //gps test version
-    var gpsVersion = '0.1';
+    var gpsVersion = '0.2';
     
     for(var i = 0; i < $('.gps_version').length; i++){
         $('.gps_version').eq(i).text(gpsVersion);
