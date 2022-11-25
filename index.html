@@ -247,17 +247,17 @@
     try{
         if ('geolocation' in navigator) {
           navigator.geolocation.watchPosition(function(position){
-              for(var i = 0; 0 < $('.gps_info').length; i++){
+              for(var i = 0; i < $('.gps_info').length; i++){
                   $('.gps_info').eq(i).text('위도 : ' + position.coords.latitude + ' / 경도 : ' + position.coords.longitude);
               }
             }, function(position){
-              for(var i = 0; 0 < $('.gps_info').length; i++){
+              for(var i = 0; i < $('.gps_info').length; i++){
                   $('.gps_info').eq(i).text('not found position');
               }
             });
         } 
         else {
-          for(var i = 0; 0 < $('.gps_info').length; i++){
+          for(var i = 0; i < $('.gps_info').length; i++){
               $('.gps_info').eq(i).text('not support gps in this browser');
           }
         }
