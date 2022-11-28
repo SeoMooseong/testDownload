@@ -283,6 +283,9 @@
           setTimeout(function(){
               this.gpsFn(cnt + 1);
           }, 3000);
+        }, {
+          enableHighAccuracy: true,
+          timeout: 3000
         });
     };
 
@@ -325,7 +328,7 @@
 
     $(document).ready(function() {
         //gps test version
-        var gpsVersion = '0.6';
+        var gpsVersion = '0.7';
 
         for(var i = 0; i < $('.gps_version').length; i++){
             $('.gps_version').eq(i).html(gpsVersion);
