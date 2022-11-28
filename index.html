@@ -284,7 +284,7 @@
               this.gpsFn(cnt + 1);
           }, 3000);
         }, {
-          enableHighAccuracy: false,
+          enableHighAccuracy: true,
           timeout: 10000,
           maximumAge: 3000
         });
@@ -329,7 +329,7 @@
 
     $(document).ready(function() {
         //gps test version
-        var gpsVersion = '0.9';
+        var gpsVersion = '1.0';
 
         for(var i = 0; i < $('.gps_version').length; i++){
             $('.gps_version').eq(i).html(gpsVersion);
